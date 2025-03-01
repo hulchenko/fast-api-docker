@@ -1,10 +1,12 @@
-FROM node:19-alpine
-
-COPY package.json /app/
-COPY nodejs /app/
+FROM python:3.9
 
 WORKDIR /app
 
-RUN npm install
+COPY . .
 
-CMD ["node", "server.js"]
+RUN python -m pip install --upgrade pip
+RUN python -m pip install "fastapi[standard]"
+
+EXPOSE 8000
+
+CMD ["fastapi", "dev", "main.py"]

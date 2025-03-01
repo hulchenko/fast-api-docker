@@ -3,6 +3,7 @@ from fastapi import FastAPI, HTTPException, Query
 from pydantic import BaseModel
 import logging
 import time
+import uvicorn
 
 app = FastAPI()
 logging.basicConfig(level=logging.DEBUG)
@@ -73,3 +74,7 @@ def update_movie(id: int, watched: bool) -> Movie:
         )
     movies[idx]["watched"] = watched
     return movies[idx]
+
+
+if __name__ == "__main__":
+    uvicorn.run(app, host="0.0.0.0", port=8000)
