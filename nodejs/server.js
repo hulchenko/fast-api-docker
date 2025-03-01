@@ -27,13 +27,17 @@ app.get("/movies/:id", (req, res, next) => {
 
 app.post("/movies", (req, res, next) => {
   console.log(req.headers);
-  const id = Date.now();
   const { name, watched = false } = req.body;
+
   const isExist = movies.find((movie) => movie.name === name);
   if (isExist) {
     const err = { status: 400, message: `Movie with the name ${name} already exists.` };
     return next(err);
   }
+
+  // define new movie object
+
+  const id = Date.now();
   const newMovie = {
     id,
     name,
@@ -43,8 +47,8 @@ app.post("/movies", (req, res, next) => {
   res.status(200).json(movies);
 });
 
-app.put("/movies", (req, res, next) => {
-  const id = Number(req.query.id);
+app.put("/movies/:id", (req, res, next) => {
+  const id = Number(req.params.id);
   const watched = req.query.watched || false;
   console.log(req.query);
   const idx = movies.findIndex((movie) => movie.id === id);
