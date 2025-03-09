@@ -1,0 +1,6 @@
+[
+  { "id": 1740528382134, "name": "Some movie 1", "watched": false },
+  { "id": 1740528382135, "name": "Some movie 2", "watched": true },
+  { "id": 1740528382136, "name": "Some movie 3", "watched": false },
+  { "id": 1741540450123, "name": "Some movie 4", "watched": false }
+]
